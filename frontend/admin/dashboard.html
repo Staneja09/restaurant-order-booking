@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | FoodieHub</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .admin-container {
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: var(--transition);
+        }
+
+        .sidebar a:hover {
+            color: var(--light);
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            padding: 30px;
+            background: var(--light);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card-box {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .card-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .card-box p {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .logout {
+            margin-top: 30px;
+            display: block;
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
+
+            <a href="dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="orders.html">Orders</a>
+
+            <span class="logout" onclick="logout()">Logout</span>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+            <h1>Dashboard 📊</h1>
+
+            <div class="cards">
+
+                <div class="card-box">
+                    <h3>Total Orders</h3>
+                    <p id="ordersCount">0</p>
+                </div>
+
+                <div class="card-box">
+                    <h3>Total Products</h3>
+                    <p id="productsCount">0</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script>
+        const API_PRODUCTS = "http://127.0.0.1:5000/products";
+        const API_ORDERS = "http://127.0.0.1:5000/orders";
+
+        // AUTH CHECK
+        if (!localStorage.getItem("adminLoggedIn")) {
+            window.location.href = "login.html";
+        }
+
+        // LOAD STATS
+        async function loadStats() {
+            let productsRes = await fetch(API_PRODUCTS);
+            let products = await productsRes.json();
+
+            document.getElementById("productsCount").innerText = products.length;
+
+            let ordersRes = await fetch(API_ORDERS);
+            let orders = await ordersRes.json();
+
+            document.getElementById("ordersCount").innerText = orders.length;
+        }
+
+        function logout() {
+            localStorage.removeItem("adminLoggedIn");
+            window.location.href = "login.html";
+        }
+
+        loadStats();
+    </script>
+
+</body>
+</html>

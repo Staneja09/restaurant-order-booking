@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | FoodieHub</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">🍔 FoodieHub</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="cart.html">Cart 🛒</a>
+        </div>
+    </div>
+
+    <!-- MENU -->
+    <div class="menu-container fade-in">
+        <h2 style="margin-bottom:20px;">Our Menu 🍽️</h2>
+
+        <div class="grid" id="menuGrid">
+            <!-- Dynamic Products -->
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 FoodieHub</p>
+    </div>
+
+    <!-- JS -->
+    <script>
+        const API_URL = "http://127.0.0.1:5000/products";
+
+        // LOAD PRODUCTS
+        async function loadMenu() {
+            const res = await fetch(API_URL);
+            const data = await res.json();
+
+            const grid = document.getElementById("menuGrid");
+            grid.innerHTML = "";
+
+            data.forEach(item => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="card-content">
+                            <div class="card-title">${item.name}</div>
+                            <div class="card-price">₹${item.price}</div>
+                            <button class="add-btn" onclick='addToCart(${JSON.stringify(item)})'>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // CART LOGIC (localStorage)
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            let existing = cart.find(item => item.id === product.id);
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                product.quantity = 1;
+                cart.push(product);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("Item added to cart 🛒");
+        }
+
+        // INIT
+        loadMenu();
+    </script>
+
+</body>
+</html>

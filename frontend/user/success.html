@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success | FoodieHub</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .success-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+        }
+
+        .success-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .success-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .success-box p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">✅ FoodieHub</div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-container">
+        <div class="success-box">
+            <div class="success-icon">🎉</div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Your food is being prepared and will arrive soon 🍔</p>
+
+            <button class="btn" onclick="goHome()">Back to Home</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 FoodieHub</p>
+    </div>
+
+    <!-- JS -->
+    <script>
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

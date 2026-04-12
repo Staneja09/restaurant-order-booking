@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | FoodieHub</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">🛒 FoodieHub</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="cart.html">Cart</a>
+        </div>
+    </div>
+
+    <!-- CART -->
+    <div class="cart-container fade-in">
+        <h2>Your Cart 🛒</h2>
+
+        <div id="cartItems"></div>
+
+        <h3 id="totalAmount" style="margin-top:20px;"></h3>
+
+        <button class="btn" onclick="goToCheckout()">Proceed to Checkout</button>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 FoodieHub</p>
+    </div>
+
+    <!-- JS -->
+    <script>
+
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let container = document.getElementById("cartItems");
+            let total = 0;
+
+            container.innerHTML = "";
+
+            if (cart.length === 0) {
+                container.innerHTML = "<p>Your cart is empty 😢</p>";
+                document.getElementById("totalAmount").innerText = "";
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price} x ${item.quantity}</p>
+                        </div>
+
+                        <div>
+                            <button onclick="decrease(${index})">➖</button>
+                            <button onclick="increase(${index})">➕</button>
+                            <button onclick="removeItem(${index})">❌</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("totalAmount").innerText = "Total: ₹" + total;
+        }
+
+        function increase(index) {
+            let cart = JSON.parse(localStorage.getItem("cart"));
+            cart[index].quantity += 1;
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function decrease(index) {
+            let cart = JSON.parse(localStorage.getItem("cart"));
+
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem("cart"));
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function goToCheckout() {
+            window.location.href = "checkout.html";
+        }
+
+        loadCart();
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+PROJECT DOCUMENTATION - RESTAURANT ORDER BOOKING WEB APP
+
+Developer:
+Samarth Taneja
+
+Project Overview:
+This is a web-based restaurant order booking system developed as my first project using vibe coding. The main goal of this project is to allow customers to place orders digitally while sitting at a restaurant table, similar to modern restaurant ordering systems.
+
+This project demonstrates full-stack development using frontend, backend, and database technologies.
+
+Tech Stack:
+Frontend: HTML, CSS, JavaScript
+Backend: Python
+Database: MySQL
+
+Pre-requisites:
+
+Install Python (latest version recommended)
+Install MySQL Server
+A web browser (Chrome or Edge recommended)
+
+Development Approach:
+This project was built using a vibe coding workflow.
+
+First, I designed the complete idea and structure of the project.
+Then, I used ChatGPT to generate a PRD (Product Requirement Document) and to design the agent workflow (how one screen connects to another).
+For coding, I used ChatGPT and Qwen to help write and structure the code.
+
+Application Workflow:
+
+User opens the frontend interface
+User browses menu items
+User places order
+Backend processes the request
+Data is stored and managed using MySQL
+
+How to Run the Project:
+
+Start the backend server by running:
+backend/routes/app.py
+Open the frontend by opening:
+frontend/user/index.html
+in your web browser
+
+Features:
+
+Digital restaurant ordering system
+Simple and interactive interface
+Backend and database integration
+Order management functionality
+
+Future Improvements:
+
+Add table number system for better order tracking
+Improve UI and user experience
+Add real-time order tracking
+Optimize backend performance
+
+Known Bugs:
+
+Currently, the system behaves like a home delivery app (similar to Swiggy)
+The intended functionality is table-based ordering inside restaurants
+This issue is due to a prompt misunderstanding and will be fixed soon
+
+Conclusion:
+This is my first project using vibe coding and full-stack development. It helped me understand how to build a complete web application from idea to execution. More features and improvements will be added in future updates.

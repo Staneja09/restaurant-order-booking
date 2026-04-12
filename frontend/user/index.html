@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieHub</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">🍔 FoodieHub</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="cart.html">Cart 🛒</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero fade-in">
+        <h1>Delicious Food, Delivered Fast 🚀</h1>
+        <p>Order your favorite meals anytime, anywhere</p>
+        <button class="btn" onclick="goToMenu()">Explore Menu</button>
+    </section>
+
+    <!-- FEATURE SECTION -->
+    <section class="menu-container fade-in">
+        <h2 style="margin-bottom:20px;">Why Choose Us?</h2>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3>⚡ Fast Delivery</h3>
+                    <p>Get your food delivered in minutes</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h3>🍔 Fresh Food</h3>
+                    <p>Only high-quality ingredients used</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h3>💳 Easy Payment</h3>
+                    <p>Simple and secure checkout process</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="hero fade-in">
+        <h2>Ready to Order?</h2>
+        <p>Browse our menu and enjoy your meal</p>
+        <button class="btn" onclick="goToMenu()">Order Now 🍽️</button>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 FoodieHub | Built by Samarth 🚀</p>
+    </div>
+
+    <!-- JS -->
+    <script>
+        function goToMenu() {
+            window.location.href = "menu.html";
+        }
+    </script>
+
+</body>
+</html>
